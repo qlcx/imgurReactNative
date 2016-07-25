@@ -4,7 +4,10 @@ import {
 	View,
 	Text,
 } from 'react-native';
+import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
 
+import * as actions from '../actions/actions';
 import TopBar from '../components/topBar';
 
 const styles = StyleSheet.create({
@@ -13,12 +16,22 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default class Home extends Component {
+class Home extends Component {
 	render() {
+		const { actions } = this.props;
 		return(
 			<View style={styles.container}>
-				<TopBar />
+				<TopBar {...actions} />
 			</View>
 		);
 	}	
 }
+
+export default connect(
+	state => ({
+		counter: state.GetTopics
+	}),
+	dispatch => ({
+		actions: bindActionCreators(actions, dispatch),
+	})
+)(Home);

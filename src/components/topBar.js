@@ -44,9 +44,13 @@ export default class TopBar extends Component {
     this.state = {
       arrowAnim: new Animated.Value(0),
     };
+
+    this._onPress = this._onPress.bind(this);
   }
 
   _onPress() {
+    const { getTopics } = this.props;
+    getTopics();
     Animated.timing(
       this.state.arrowAnim,
       {
