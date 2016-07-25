@@ -50,10 +50,13 @@ export default class TopBar extends Component {
     Animated.timing(
       this.state.arrowAnim,
       {
-        toValue: 1,
+        toValue: this.arrowAnimValue ? 0 : 1,
         duration: 200,
       },
-    ).start();
+    )
+    .start(() => {
+      this.arrowAnimValue = !this.arrowAnimValue;
+    });
   }
 
   render() {

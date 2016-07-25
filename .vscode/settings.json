@@ -8,7 +8,7 @@
     "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
 
     // 控制字体大小。
-    "editor.fontSize": 12,
+    "editor.fontSize": 16,
 
     // 控制行高。
     "editor.lineHeight": 0,
