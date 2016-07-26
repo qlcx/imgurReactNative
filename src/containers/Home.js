@@ -24,7 +24,7 @@ class Home extends Component {
 
 		return(
 			<View style={styles.container}>
-				<TopBar {...actions} topics={state.topics} />
+				<TopBar {...actions} topics={state.topics} topBarSta={state.topBarSta} />
 				
 			</View>
 		);
@@ -33,7 +33,7 @@ class Home extends Component {
 
 export default connect(
 	state => ({
-		state: state.GetTopics,
+		state: state.Topics,
 	}),
 	dispatch => ({
 		actionFetchData: bindActionCreators(actionFetchData, dispatch),

@@ -26,8 +26,8 @@ class RenderPage extends Component {
 
 export default connect(
   state => ({
-    stateImages: state.GetImages,
-    stateTopics: state.GetTopics,
+    stateImages: state.Images,
+    stateTopics: state.Topics,
   }),
   dispatch => ({
     //actionImage: bindActionCreators(actionImage, dispatch)

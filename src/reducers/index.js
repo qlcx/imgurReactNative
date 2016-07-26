@@ -1,7 +1,7 @@
-import GetTopics from './getTopics';
-import GetImages from './getImages';
+import Topics from './Topics';
+import Images from './Images';
 
 export {
-	GetTopics,
-	GetImages
+	Topics,
+	Images
 }

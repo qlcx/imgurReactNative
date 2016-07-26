@@ -69,10 +69,7 @@ export default class TopBar extends Component {
   }
 
   render() {
-    const { topics, getsData } = this.props;
-    let info = topics ? topics[0].name : '';
-    //if(info !== ' ')
-      //getImgurImages(topics[0].id);
+    const { topics, topBarSta } = this.props;
 
     return(
       <View style={styles.topBar}> 
@@ -91,7 +88,7 @@ export default class TopBar extends Component {
                 color: '#fff', 
                 fontSize: 16
               }} >
-              {info}
+              {topBarSta}
             </Text>
             <Animated.View 
               style={{
