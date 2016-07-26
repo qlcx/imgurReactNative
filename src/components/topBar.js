@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import * as IconType from '../constants/icons'; 
+import * as types from '../actions/actionsConstant';
 
 const { height, width } = Dimensions.get('window');
 const TOPBAR_HEIGHT = height / 11;
@@ -50,8 +51,8 @@ export default class TopBar extends Component {
   }
 
   componentWillMount() {
-    const { getImgurTopics } = this.props;
-    getImgurTopics('topics/defaults');
+    const { getsData } = this.props;
+    getsData('topics/defaults', types.GET_TOPICS);
   }
 
   _onPress() {
@@ -68,10 +69,10 @@ export default class TopBar extends Component {
   }
 
   render() {
-    const { topics, getImgurImages } = this.props;
-    let info = topics ? topics[0].name : ' ';
-    if(info !== ' ')
-      getImgurImages(topics[0].id);
+    const { topics, getsData } = this.props;
+    let info = topics ? topics[0].name : '';
+    //if(info !== ' ')
+      //getImgurImages(topics[0].id);
 
     return(
       <View style={styles.topBar}> 
@@ -90,7 +91,7 @@ export default class TopBar extends Component {
                 color: '#fff', 
                 fontSize: 16
               }} >
-              { info }
+              {info}
             </Text>
             <Animated.View 
               style={{

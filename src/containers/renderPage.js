@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as actionImage from '../actions/Action_getImages';
 import ImageList from '../components/imageList';
 
 const styles = StyleSheet.create({
@@ -31,7 +30,7 @@ export default connect(
     stateTopics: state.GetTopics,
   }),
   dispatch => ({
-    actionImage: bindActionCreators(actionImage, dispatch)
+    //actionImage: bindActionCreators(actionImage, dispatch)
   })
 )(RenderPage);
 

@@ -8,11 +8,9 @@ const initialState = {
 export default function getTopics(state = {initialState}, action = {}) {
 	switch(action.type) {
 		case types.GET_TOPICS:
-			return {
-				...state,
+			return Object.assign({}, state, {
 				topics: action.topics,
-			}
-
+			});
 		default: 
 			return state;
 	}
