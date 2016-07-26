@@ -7,8 +7,9 @@ import {
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import * as actions from '../actions/actions';
+import * as actions from '../actions/Action_getTopics';
 import TopBar from '../components/topBar';
+import RenderPage from './renderPage';
 
 const styles = StyleSheet.create({
 	container: {
@@ -18,10 +19,11 @@ const styles = StyleSheet.create({
 
 class Home extends Component {
 	render() {
-		const { actions } = this.props;
+		const { actions, state } = this.props;
 		return(
 			<View style={styles.container}>
-				<TopBar {...actions} />
+				<TopBar {...actions} topics={state.topics} />
+				<RenderPage />
 			</View>
 		);
 	}	
@@ -29,7 +31,7 @@ class Home extends Component {
 
 export default connect(
 	state => ({
-		counter: state.GetTopics
+		state: state.GetTopics,
 	}),
 	dispatch => ({
 		actions: bindActionCreators(actions, dispatch),

@@ -1,15 +1,15 @@
-import * as types from '../actions/actions';
+import * as types from '../actions/actionsConstant';
 
-import * as Api from '../utils/getImgurData';
+const initialState = {
+	topics: [],
+};
 
-export default function getTopics(state = {counter: '22222'}, action = {}) {
+export default function getTopics(state = {initialState}, action = {}) {
 	switch(action.type) {
 		case types.GET_TOPICS:
-			let data =Api.getImgurData(action.name);
-			console.log(data);
 			return {
 				...state,
-				counter: '1111',
+				topics: action.topics,
 			}
 
 		default: 

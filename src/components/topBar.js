@@ -48,9 +48,14 @@ export default class TopBar extends Component {
     this._onPress = this._onPress.bind(this);
   }
 
+  componentDidMount() {
+    const { getImgurData } = this.props;
+    getImgurData('topics/defaults');
+  }
+
   _onPress() {
-    const { getTopics } = this.props;
-    getTopics();
+    const { topics } = this.props;
+    console.log(topics[0].id);
     Animated.timing(
       this.state.arrowAnim,
       {
