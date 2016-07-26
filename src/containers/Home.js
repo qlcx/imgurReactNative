@@ -25,7 +25,7 @@ class Home extends Component {
 		return(
 			<View style={styles.container}>
 				<TopBar {...actions} topics={state.topics} topBarSta={state.topBarSta} />
-				
+				<RenderPage topBarSta={state.topBarSta} />
 			</View>
 		);
 	}	

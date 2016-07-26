@@ -9,11 +9,14 @@ import {
   Dimensions,
 } from 'react-native';
 
+import * as types from '../actions/actionsConstant';
+
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
   }
 });
 
@@ -22,24 +25,30 @@ export default class ImageList extends Component {
     super(props);
   }
 
-/*
   componentWillMount() {
-    const { getImgurImage,  ImageInfo} = this.state;
-    ImageInfo.Images.map()
+    const { getsData, topBarSta } = this.props;
+    if(topBarSta){
+      getsData('topics/' + topBarSta.id, types.GET_IMAGES);
+    }
   }
-*/
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.topBarSta && this.topBarSta_cpy != nextProps.topBarSta) {
+      nextProps.getsData('topics/' + nextProps.topBarSta.id, types.GET_IMAGES);
+    }
+    this.topBarSta_cpy = nextProps.topBarSta
+  }
 
   render() {
-    const { ImageInfo } = this.props;
-
-
+    const { images } = this.props;
+    let aa = '';
+    if(images)
+       aa = <Image source={{uri: 'http://i.imgur.com/' + images[0].id + 'h.jpg'}} style={{width: 100, height: 100}} />;
     return(
       <View style={styles.container}>
-      {ImageInfo.map((data) => {
-         return(
-           <Image src={{uri: 'http://i.imgur.com/' + data.id + 'h.jpg'}} style={{width: width / 3}}/>
-         );
-       })}
+      <Text>
+        {aa}
+        </Text>
       </View>
     );
   }

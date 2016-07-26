@@ -70,6 +70,7 @@ export default class TopBar extends Component {
 
   render() {
     const { topics, topBarSta } = this.props;
+    let topBarStaName = topBarSta ? topBarSta.name : ''; 
 
     return(
       <View style={styles.topBar}> 
@@ -88,7 +89,7 @@ export default class TopBar extends Component {
                 color: '#fff', 
                 fontSize: 16
               }} >
-              {topBarSta}
+              {topBarStaName}
             </Text>
             <Animated.View 
               style={{

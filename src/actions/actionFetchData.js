@@ -13,9 +13,9 @@ export let getsData = (url, type) => {
 
 	return dispatch => {
 		return ImgurApi.gets(url, (res) => {
-			dispatch(getTopics(res.data));
+			dispatch(operatorType(res.data));
 		}, (err) => {
-			dispatch(getTopics([]));
+			dispatch(operatorType([]));
 		}) 
 	}
 }
