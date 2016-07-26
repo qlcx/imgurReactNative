@@ -1,3 +1,4 @@
+'use strict';
 import React, { Component } from 'react';
 import { 
   StyleSheet, 
@@ -48,14 +49,12 @@ export default class TopBar extends Component {
     this._onPress = this._onPress.bind(this);
   }
 
-  componentDidMount() {
-    const { getImgurData } = this.props;
-    getImgurData('topics/defaults');
+  componentWillMount() {
+    const { getImgurTopics } = this.props;
+    getImgurTopics('topics/defaults');
   }
 
   _onPress() {
-    const { topics } = this.props;
-    console.log(topics[0].id);
     Animated.timing(
       this.state.arrowAnim,
       {
@@ -69,6 +68,11 @@ export default class TopBar extends Component {
   }
 
   render() {
+    const { topics, getImgurImages } = this.props;
+    let info = topics ? topics[0].name : ' ';
+    if(info !== ' ')
+      getImgurImages(topics[0].id);
+
     return(
       <View style={styles.topBar}> 
         <View style={styles.iconDownSection}>
@@ -86,7 +90,7 @@ export default class TopBar extends Component {
                 color: '#fff', 
                 fontSize: 16
               }} >
-              1234
+              { info }
             </Text>
             <Animated.View 
               style={{

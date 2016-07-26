@@ -1,21 +1,36 @@
 import * as types from './actionsConstant';
 import ImgurApi from '../utils/getImgurData';
 
-/*
-export let getImgurData = (url) => {
+//或者图片列表
+export let getImgurImages = (id) => {
 	return dispatch => {
-		return ImgurApi.getImgurData(url, (res) => {
-			dispatch(getTopics(res.data));
+		return ImgurApi.getImgurImages(id, (res) => {
+			dispatch(getImages(res.data));
 		}, (err) => {
-			dispatch(getTopics([]));
+			dispatch(getImages([]));
 		}) 
 	}
 }
-
-export function getTopics(topicsData) {
+export function getImages(imagesData) {
 	return {
-		type: types.GET_TOPICS,
-		topics: topicsData,
+		type: types.GET_IMAGES,
+		images: imagesData,
 	}
 }
-*/
+
+//获得图片信息
+export let getImgurImage = (id) => {
+	return dispatch => {
+		return ImgurApi.getImgurImage(id, (res) => {
+			dispatch(getImage(res.data.images[0]));
+		}, (err) => {
+			dispatch(getImage({}));
+		}) 
+	}
+}
+export function getImage(imageData) {
+	return {
+		type: types.GET_IMAGES,
+		images: imageData,
+	}
+}

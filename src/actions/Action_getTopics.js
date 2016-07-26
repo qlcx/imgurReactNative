@@ -1,9 +1,9 @@
 import * as types from './actionsConstant';
 import ImgurApi from '../utils/getImgurData';
 
-export let getImgurData = (url) => {
+export let getImgurTopics = (url) => {
 	return dispatch => {
-		return ImgurApi.getImgurData(url, (res) => {
+		return ImgurApi.getImgurTopics(url, (res) => {
 			dispatch(getTopics(res.data));
 		}, (err) => {
 			dispatch(getTopics([]));
@@ -17,3 +17,5 @@ export function getTopics(topicsData) {
 		topics: topicsData,
 	}
 }
+
+//触发下拉菜单的动作

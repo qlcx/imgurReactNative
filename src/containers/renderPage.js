@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as actions from '../actions/Action_getImages';
+import * as actionImage from '../actions/Action_getImages';
 import ImageList from '../components/imageList';
 
 const styles = StyleSheet.create({
@@ -14,10 +14,12 @@ const styles = StyleSheet.create({
 
 class RenderPage extends Component {
   render() {
-    const {state, actions} = this.props;
+    const {stateImages, stateTopics, actionImage} = this.props;
     return(
       <View style={styles.container}>
-        <ImageList />
+        <ImageList 
+          {...actionImage} 
+          ImageInfo={stateImages.initialState.Images} />
       </View>
     );
   }
@@ -25,10 +27,11 @@ class RenderPage extends Component {
 
 export default connect(
   state => ({
-    state: state.GetTopics
+    stateImages: state.GetImages,
+    stateTopics: state.GetTopics,
   }),
   dispatch => ({
-    actions: bindActionCreators(actions, dispatch)
+    actionImage: bindActionCreators(actionImage, dispatch)
   })
 )(RenderPage);
 

@@ -2,6 +2,7 @@ import * as types from '../actions/actionsConstant';
 
 const initialState = {
 	topics: [],
+	initName: '',
 };
 
 export default function getTopics(state = {initialState}, action = {}) {
