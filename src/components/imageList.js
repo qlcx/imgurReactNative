@@ -5,6 +5,7 @@ import {
   Text,
   Image,
   ListView,
+  ScrollView,
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
@@ -14,10 +15,15 @@ import * as types from '../actions/actionsConstant';
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  listview: {
+  container: {
+    flex: 1,
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    backgroundColor: 'red'
+    backgroundColor: '#000'
+  },
+
+  listview: {
+    marginTop: 5,
+    alignItems: 'center',
   },
 
   imageContainer: {
@@ -59,31 +65,40 @@ export default class ImageList extends Component {
     this.topBarSta_cpy = nextProps.topBarSta;
   }
 
-  _renderData(rowData: string, sectionID: number, rowID: number) {
-    if (rowID < 20) {
+  _imageDataRender(rowData, rowID) {
       let imageID = rowData.cover ? rowData.cover : rowData.id;
       let imageWidth = rowData.cover_width ? rowData.cover_width : rowData.width;
       let imageHeight = rowData.cover_height ? rowData.cover_height : rowData.height;
 
-      let imgContainer_w = width/2.2;
+      let imgContainer_w = width / 2.2;
       let imgContainer_h = imageHeight / imageWidth * imgContainer_w;
-      if(imageID == 'dPrJE8A') {
-        console.log(rowData)
-      } 
 
       return(
-        <Image 
-          resizeMode="contain"
-          backgroundColor= 'red' 
-          style={{
-            width: imgContainer_w, 
-            height: imgContainer_h, 
-            //position: 'absolute',
-          }}
-          source={{uri: 'http://i.imgur.com/' + imageID + 'h.jpg'}} >
-          <Text style={{position: 'relative'}}>{imageID}</Text>
-        </Image>
+        <View style={{marginVertical: 3}}>
+          <Image 
+            resizeMode="contain"
+            style={{
+              width: imgContainer_w, 
+              height: imgContainer_h,
+            }}
+            source={{uri: 'http://i.imgur.com/' + imageID + 'h.jpg'}} >
+            <Text style={{position: 'relative', color: '#fff'}}>{imageID}</Text>
+          </Image>
+        </View>
       );
+  }
+
+  _renderDataLeft(rowData: string, sectionID: number, rowID: number) {
+    if (rowID % 2 === 0) {
+      return (this._imageDataRender(rowData, rowID));
+    } else {
+      return(<View />);
+    }
+  }
+
+  _renderDataRight(rowData: string, sectionID: number, rowID: number) {
+    if (rowID % 2) {
+      return (this._imageDataRender(rowData, rowID));
     } else {
       return(<View />);
     }
@@ -91,11 +106,20 @@ export default class ImageList extends Component {
 
   render() {
     return(
-      <ListView
-        contentContainerStyle={styles.listview} 
-        enableEmptySections={true}
-        dataSource={this.state.dataSource}
-        renderRow={this._renderData.bind(this)} />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.container}>
+          <ListView
+            contentContainerStyle={[styles.listview, {marginLeft: width / 60}]}
+            enableEmptySections={true}
+            dataSource={this.state.dataSource}
+            renderRow={this._renderDataLeft.bind(this)} />
+          <ListView
+            contentContainerStyle={[styles.listview, {marginRight: width / 60}]}
+            enableEmptySections={true}
+            dataSource={this.state.dataSource}
+            renderRow={this._renderDataRight.bind(this)} />
+        </View>
+      </ScrollView>
     );
   }
 }
