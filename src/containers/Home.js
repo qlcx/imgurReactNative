@@ -3,6 +3,7 @@ import {
 	StyleSheet,
 	View,
 	Text,
+	Navigator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -24,7 +25,11 @@ class Home extends Component {
 
 		return(
 			<View style={styles.container}>
-				<TopBar {...actions} topics={state.topics} topBarSta={state.topBarSta} />
+				<TopBar 
+					{...actions} 
+					topics={state.topics} 
+					topBarSta={state.topBarSta}
+					status={state.status} />
 				<RenderPage topBarSta={state.topBarSta} />
 			</View>
 		);

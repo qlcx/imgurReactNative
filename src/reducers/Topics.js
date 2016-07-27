@@ -3,6 +3,7 @@ import * as types from '../actions/actionsConstant';
 const initialState = {
 	topics: [],
 	topBarSta: {},
+	status: false,
 };
 
 export default function Topics(state = {initialState}, action = {}) {
@@ -14,7 +15,8 @@ export default function Topics(state = {initialState}, action = {}) {
 			});
 		case types.SET_TOPBAR_STA:
 			return Object.assign({}, state, {
-				topBarSta: action.status,
+				topBarSta: action.topBarSta,
+				status: action.status,
 			});
 		default: 
 			return state;

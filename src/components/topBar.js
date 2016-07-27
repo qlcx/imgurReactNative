@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 		height: TOPBAR_HEIGHT,
 		width: width,
 		flexDirection: 'row',
-		backgroundColor: '#2b2b2b',
+		backgroundColor: '#222222',
 	},
 
   iconDownSection: {
@@ -56,6 +56,13 @@ export default class TopBar extends Component {
   }
 
   _onPress() {
+    const { setTopBarStatus, topBarSta } = this.props;
+    if(!this.arrowAnimValue) {
+      setTopBarStatus(true, topBarSta);
+    } else {
+      setTopBarStatus(false, topBarSta);
+    }
+    
     Animated.timing(
       this.state.arrowAnim,
       {
@@ -82,9 +89,10 @@ export default class TopBar extends Component {
               alignItems: 'center',
             }} 
             onPress={this._onPress.bind(this)} >
-            <Text 
+            <Text
+              numberOfLines={1} 
               style={{
-                width: width / 6,
+                width: width / 5,
                 marginHorizontal: 10, 
                 color: '#fff', 
                 fontSize: 16

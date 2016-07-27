@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import * as types from '../actions/actionsConstant';
+import * as IconType from '../constants/icons';
 
 const { height, width } = Dimensions.get('window');
 
@@ -26,12 +27,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  imageContainer: {
-    width: width/2,
-    height,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'red',
+  imageTitle: {
+    color: '#fff', 
+    fontSize: 14,
+    marginLeft: 5,
+    marginTop: 5,
+    fontWeight: 'bold',
+  },
+
+  upCnts: {
+    marginLeft: 5,
+    marginBottom: 8,
+    marginTop: 3,
+    flexDirection: 'row',
   }
 });
 
@@ -40,7 +48,8 @@ export default class ImageList extends Component {
     super(props);
 
     this.state = {
-      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+      dataSource1: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+      dataSource2: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
     }
   }
 
@@ -57,7 +66,8 @@ export default class ImageList extends Component {
     }
     if(nextProps.images && this.images_cpy != nextProps.images) {
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(nextProps.images),
+        dataSource1: this.state.dataSource1.cloneWithRows(nextProps.images),
+        dataSource2: this.state.dataSource2.cloneWithRows(nextProps.images),
       });
     }
 
@@ -84,15 +94,26 @@ export default class ImageList extends Component {
             source={{uri: 'http://i.imgur.com/' + imageID + 'h.jpg'}} >
             <Text style={{position: 'relative', color: '#fff'}}>{imageID}</Text>
           </Image>
+          <View style={{backgroundColor: '#2b2b2b', width: imgContainer_w}}>
+            <Text style={styles.imageTitle} numberOfLines={2}>
+              {rowData.title}
+            </Text>
+            <View style={styles.upCnts}>
+              {IconType.ICON_ARROW_UP}
+              <Text style={{color: '#C4C4C4', marginLeft: 2, fontSize: 13}}>
+                {rowData.ups + ' Points'}
+              </Text>
+            </View>
+          </View>
         </View>
       );
   }
 
   _renderDataLeft(rowData: string, sectionID: number, rowID: number) {
-    if (rowID % 2 === 0) {
+    if (!(rowID % 2)) {
       return (this._imageDataRender(rowData, rowID));
     } else {
-      return(<View />);
+      return null;
     }
   }
 
@@ -100,7 +121,7 @@ export default class ImageList extends Component {
     if (rowID % 2) {
       return (this._imageDataRender(rowData, rowID));
     } else {
-      return(<View />);
+      return null;
     }
   }
 
@@ -111,12 +132,12 @@ export default class ImageList extends Component {
           <ListView
             contentContainerStyle={[styles.listview, {marginLeft: width / 60}]}
             enableEmptySections={true}
-            dataSource={this.state.dataSource}
+            dataSource={this.state.dataSource1}
             renderRow={this._renderDataLeft.bind(this)} />
           <ListView
             contentContainerStyle={[styles.listview, {marginRight: width / 60}]}
             enableEmptySections={true}
-            dataSource={this.state.dataSource}
+            dataSource={this.state.dataSource2}
             renderRow={this._renderDataRight.bind(this)} />
         </View>
       </ScrollView>

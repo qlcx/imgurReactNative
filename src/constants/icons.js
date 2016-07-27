@@ -11,3 +11,5 @@ export const ICON_SEARCH = (<Icons name="search" size={18} color="#C5C0C7" />);
 export const ICON_SORT = (<Icons name="align-left" size={18} color="#C5C0C7" />);
 //通知图标
 export const ICON_BELL = (<Icons name="bell" size={18} color="#C5C0C7" />);
+//vote图标
+export const ICON_ARROW_UP = (<Icons name="arrow-up" size={15} color="#C4C4C4" />);
