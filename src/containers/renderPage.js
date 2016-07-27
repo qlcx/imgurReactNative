@@ -14,12 +14,15 @@ const styles = StyleSheet.create({
 
 class RenderPage extends Component {
   render() {
-    const { topBarSta, state, actionFetchData } = this.props;
+    const {state, actionFetchData } = this.props;
     let actions = Object.assign({}, actionFetchData);
 
     return(
       <View style={styles.container}>
-        <ImageList {...actions} images={state.Images} topBarSta={topBarSta} />
+        <ImageList
+          {...actions} 
+          images={state.Images.Images} 
+          topBarSta={state.Topics.topBarSta} />
       </View>
     );
   }
@@ -27,7 +30,7 @@ class RenderPage extends Component {
 
 export default connect(
   state => ({
-    state: state.Images,
+    state: state,
   }),
   dispatch => ({
     actionFetchData: bindActionCreators(actionFetchData, dispatch)
