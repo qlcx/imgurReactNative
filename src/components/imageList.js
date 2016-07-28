@@ -8,6 +8,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Dimensions,
+  InteractionManager,
 } from 'react-native';
 
 import * as types from '../actions/actionsConstant';
@@ -51,6 +52,8 @@ export default class ImageList extends Component {
     this.state = {
       dataSource1: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       dataSource2: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+
+      renderPlaceholderOnly: true
     }
   }
 
@@ -59,6 +62,12 @@ export default class ImageList extends Component {
     if(topBarSta){
       getsData('topics/' + topBarSta.id, types.GET_IMAGES);
     }
+  }
+
+  componentDidMount() {
+    InteractionManager.runAfterInteractions(() => {
+      this.setState({renderPlaceholderOnly: false});
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -132,7 +141,19 @@ export default class ImageList extends Component {
     }
   }
 
+  _renderPlaceholderView() {
+    return (
+      <View style={styles.container}>
+        <Text style={{color: '#fff'}}>Loading...</Text>
+      </View>
+    );
+  }
+
   render() {
+    if (this.state.renderPlaceholderOnly) {
+      return this._renderPlaceholderView();
+    }
+
     return(
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>

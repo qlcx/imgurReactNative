@@ -10,9 +10,10 @@ export let getsData = (url, type) => {
 	} else if( type === types.GET_IMAGES) {
 		operatorType = getImages;
 	}
-
+	console.log(3333);
 	return dispatch => {
 		return ImgurApi.gets(url, (res) => {
+			console.log(222);
 			dispatch(operatorType(res.data));
 		}, (err) => {
 			dispatch(operatorType([]));
@@ -37,11 +38,12 @@ export function getImages(imagesData) {
 }
 
 //设置topbar状态
-export function setTopBarStatus(status, topBarSta) {
+export function setTopBarStatus(status, topBarSta, setArrow) {
 	return {
 		type: types.SET_TOPBAR_STA,
 		topBarSta: topBarSta,
 		status: status,
+		setArrow: setArrow,
 	}
 }
 

@@ -48,6 +48,7 @@ export default class TopBar extends Component {
     };
 
     this._onPress = this._onPress.bind(this);
+    this._animation = this._animation.bind(this);
   }
 
   componentWillMount() {
@@ -55,14 +56,13 @@ export default class TopBar extends Component {
     getsData('topics/defaults', types.GET_TOPICS);
   }
 
-  _onPress() {
-    const { setTopBarStatus, topBarSta } = this.props;
-    if(!this.arrowAnimValue) {
-      setTopBarStatus(true, topBarSta);
-    } else {
-      setTopBarStatus(false, topBarSta);
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.setArrow) {
+      this._animation();
     }
-    
+  }
+
+  _animation() {
     Animated.timing(
       this.state.arrowAnim,
       {
@@ -72,7 +72,23 @@ export default class TopBar extends Component {
     )
     .start(() => {
       this.arrowAnimValue = !this.arrowAnimValue;
+      this.CanAnimated = true;
     });
+  }
+
+  _onPress() {
+    if(this.CanAnimated === undefined || this.CanAnimated) {
+      const { setTopBarStatus, topBarSta } = this.props;
+      if(!this.arrowAnimValue) {
+        setTopBarStatus(true, topBarSta, false);
+      } else {
+        setTopBarStatus(false, topBarSta, false);
+      }
+      
+      //开始动画
+      this._animation();
+      this.CanAnimated = false;
+    }
   }
 
   render() {
@@ -90,7 +106,7 @@ export default class TopBar extends Component {
             }} 
             onPress={this._onPress.bind(this)} >
             <Text
-              numberOfLines={1} 
+              numberOfLines={2} 
               style={{
                 width: width / 5,
                 marginHorizontal: 10, 

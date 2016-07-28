@@ -81,7 +81,12 @@ export default class TopicList extends Component {
   }
 
   _onPress(topicInfo) {
+    const { setTopBarStatus, navigator } = this.props;
+    setTopBarStatus(false, topicInfo, true);
 
+    navigator.resetTo({
+      component: RenderPage
+    });
   }
 
   _renderData(rowData: string, sectionID: number, rowID: number) {
@@ -89,8 +94,6 @@ export default class TopicList extends Component {
     let imageID = null;
     if(rowData.topPost) {
       imageID = rowData.topPost.cover ? rowData.topPost.cover : rowData.topPost.id;
-    } else {
-      console.log(rowData)
     }
 
     return(

@@ -7,6 +7,7 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import * as actionFetchData from '../actions/actionFetchData';
 import TopicList from '../components/topicList';
 
 const styles = StyleSheet.create({
@@ -18,11 +19,13 @@ const styles = StyleSheet.create({
 
 class TopicsContainer extends Component {
   render() {
-    const { state, navigator } = this.props;
+    const { state, navigator, actionFetchData } = this.props;
+    let actions = Object.assign({}, actionFetchData);
 
     return(
       <View style={styles.container}>
         <TopicList 
+          {...actions}
           status={state.status}
           topicsData={state.topics}
           navigator={navigator} />
@@ -34,5 +37,8 @@ class TopicsContainer extends Component {
 export default connect(
   state => ({
     state: state.Topics,
+  }),
+  dispatch => ({
+    actionFetchData: bindActionCreators(actionFetchData, dispatch),
   })
-)(TopicsContainer)
+)(TopicsContainer);

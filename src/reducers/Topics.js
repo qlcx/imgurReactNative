@@ -4,6 +4,7 @@ const initialState = {
 	topics: [],
 	topBarSta: {},
 	status: false,
+	setArrow: false,
 };
 
 export default function Topics(state = {initialState}, action = {}) {
@@ -17,6 +18,7 @@ export default function Topics(state = {initialState}, action = {}) {
 			return Object.assign({}, state, {
 				topBarSta: action.topBarSta,
 				status: action.status,
+				setArrow: action.setArrow,
 			});
 		default: 
 			return state;
