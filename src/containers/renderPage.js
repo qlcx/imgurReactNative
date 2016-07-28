@@ -9,19 +9,22 @@ import ImageList from '../components/imageList';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#000',
   }
 });
 
 class RenderPage extends Component {
   render() {
-    const {state, actionFetchData } = this.props;
+    const {state, actionFetchData, navigator } = this.props;
     let actions = Object.assign({}, actionFetchData);
 
     return(
       <View style={styles.container}>
         <ImageList
           {...actions} 
-          images={state.Images.Images} 
+          images={state.Images.Images}
+          status={state.Topics.status}
+          navigator={navigator} 
           topBarSta={state.Topics.topBarSta} />
       </View>
     );

@@ -12,6 +12,7 @@ import {
 
 import * as types from '../actions/actionsConstant';
 import * as IconType from '../constants/icons';
+import TopicsContainer from '../containers/topicsContainer';
 
 const { height, width } = Dimensions.get('window');
 
@@ -69,6 +70,12 @@ export default class ImageList extends Component {
         dataSource1: this.state.dataSource1.cloneWithRows(nextProps.images),
         dataSource2: this.state.dataSource2.cloneWithRows(nextProps.images),
       });
+    }
+
+    if(nextProps.status) {
+      nextProps.navigator.push({
+        component: TopicsContainer,
+      })
     }
 
     this.images_cpy = nextProps.images;

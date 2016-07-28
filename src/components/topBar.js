@@ -11,7 +11,6 @@ import {
 
 import * as IconType from '../constants/icons'; 
 import * as types from '../actions/actionsConstant';
-import TopicsContainer from '../containers/topicsContainer';
 
 const { height, width } = Dimensions.get('window');
 const TOPBAR_HEIGHT = height / 11;
@@ -57,12 +56,9 @@ export default class TopBar extends Component {
   }
 
   _onPress() {
-    const { setTopBarStatus, topBarSta, navigator } = this.props;
+    const { setTopBarStatus, topBarSta } = this.props;
     if(!this.arrowAnimValue) {
       setTopBarStatus(true, topBarSta);
-      navigator.push({
-        component: TopicsContainer
-      });
     } else {
       setTopBarStatus(false, topBarSta);
     }
