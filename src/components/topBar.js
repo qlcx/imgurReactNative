@@ -55,12 +55,27 @@ export default class TopBar extends Component {
     getsData('topics/defaults', types.GET_TOPICS);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.setArrow) {
+      Animated.timing(
+        this.state.arrowAnim,
+        {
+          toValue: this.arrowAnimValue ? 0 : 1,
+          duration: 200,
+        },
+      )
+      .start(() => {
+        this.arrowAnimValue = !this.arrowAnimValue;
+      });
+    }
+  }
+
   _onPress() {
     const { setTopBarStatus, topBarSta } = this.props;
     if(!this.arrowAnimValue) {
-      setTopBarStatus(true, topBarSta);
+      setTopBarStatus(true, topBarSta, false);
     } else {
-      setTopBarStatus(false, topBarSta);
+      setTopBarStatus(false, topBarSta, false);
     }
     
     Animated.timing(

@@ -30,7 +30,8 @@ class Home extends Component {
 					{...actions}
 					topics={state.topics} 
 					topBarSta={state.topBarSta}
-					status={state.status} />
+					status={state.status}
+					setArrow={state.setArrow} />
 				<Navigator 
 					initialRoute={{name: 'RenderPage', component: RenderPage}}
 					configureScene={() => Navigator.SceneConfigs.VerticalDownSwipeJump}

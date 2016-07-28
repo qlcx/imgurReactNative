@@ -37,11 +37,12 @@ export function getImages(imagesData) {
 }
 
 //设置topbar状态
-export function setTopBarStatus(status, topBarSta) {
+export function setTopBarStatus(status, topBarSta, setArrow) {
 	return {
 		type: types.SET_TOPBAR_STA,
 		topBarSta: topBarSta,
 		status: status,
+		setArrow: setArrow,
 	}
 }
 
