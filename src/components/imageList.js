@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Dimensions,
   InteractionManager,
+  ActivityIndicator,
 } from 'react-native';
 
 import * as types from '../actions/actionsConstant';
@@ -52,8 +53,6 @@ export default class ImageList extends Component {
     this.state = {
       dataSource1: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
       dataSource2: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
-
-      renderPlaceholderOnly: true
     }
   }
 
@@ -62,12 +61,6 @@ export default class ImageList extends Component {
     if(topBarSta){
       getsData('topics/' + topBarSta.id, types.GET_IMAGES);
     }
-  }
-
-  componentDidMount() {
-    InteractionManager.runAfterInteractions(() => {
-      this.setState({renderPlaceholderOnly: false});
-    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -143,14 +136,21 @@ export default class ImageList extends Component {
 
   _renderPlaceholderView() {
     return (
-      <View style={styles.container}>
-        <Text style={{color: '#fff'}}>Loading...</Text>
+      <View 
+        style={{
+          flex: 1, 
+          backgroundColor: '#000', 
+          justifyContent: 'center', 
+          alignItems: 'center'
+        }}>
+        <ActivityIndicator color="#fff" size="large" />
       </View>
     );
   }
 
   render() {
-    if (this.state.renderPlaceholderOnly) {
+    const { imgLoading } = this.props;
+    if (imgLoading) {
       return this._renderPlaceholderView();
     }
 

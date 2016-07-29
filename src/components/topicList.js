@@ -84,9 +84,7 @@ export default class TopicList extends Component {
     const { setTopBarStatus, navigator } = this.props;
     setTopBarStatus(false, topicInfo, true);
 
-    navigator.resetTo({
-      component: RenderPage
-    });
+    navigator.popToTop();
   }
 
   _renderData(rowData: string, sectionID: number, rowID: number) {

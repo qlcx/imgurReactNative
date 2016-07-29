@@ -10,10 +10,12 @@ export let getsData = (url, type) => {
 	} else if( type === types.GET_IMAGES) {
 		operatorType = getImages;
 	}
-	console.log(3333);
+
 	return dispatch => {
+		//正在fetcht资源
+		dispatch(listLoading(true));
 		return ImgurApi.gets(url, (res) => {
-			console.log(222);
+			dispatch(listLoading(false));
 			dispatch(operatorType(res.data));
 		}, (err) => {
 			dispatch(operatorType([]));
@@ -34,6 +36,14 @@ export function getImages(imagesData) {
 	return {
 		type: types.GET_IMAGES,
 		images: imagesData,
+	}
+}
+
+//get listInfo isloading
+export function listLoading(status) {
+	return {
+		type: types.LIST_LOADING,
+		isLoading: status,
 	}
 }
 

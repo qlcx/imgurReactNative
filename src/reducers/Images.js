@@ -2,6 +2,7 @@ import * as types from '../actions/actionsConstant';
 
 const initialState = {
 	Images: [],
+	isLoading: false,
 };
 
 export default function Images(state = {initialState}, action = {}) {
@@ -10,6 +11,10 @@ export default function Images(state = {initialState}, action = {}) {
 			return Object.assign({}, state, {
 				Images: action.images,
 			});
+		case types.LIST_LOADING:
+			return Object.assign({}, state, {
+				isLoading: action.isLoading,
+			})
 		default: 
 			return state;
 	}

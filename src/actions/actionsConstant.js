@@ -2,6 +2,8 @@
 export const GET_TOPICS = 'GET_TOPICS';
 //获得图片列表
 export const GET_IMAGES = 'GET_IMAGES';
+//图片正在下载
+export const LIST_LOADING = 'LIST_LOADING';
 //获得图片信息
 export const GET_IMAGE = 'GET_IMAGE';
 //设置topbar状态

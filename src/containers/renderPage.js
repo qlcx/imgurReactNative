@@ -23,6 +23,7 @@ class RenderPage extends Component {
         <ImageList
           {...actions} 
           images={state.Images.Images}
+          imgLoading={state.Images.isLoading}
           status={state.Topics.status}
           navigator={navigator} 
           topBarSta={state.Topics.topBarSta} />
