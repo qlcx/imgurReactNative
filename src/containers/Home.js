@@ -3,8 +3,8 @@ import {
 	StyleSheet,
 	View,
 	Text,
-	Navigator,
 } from 'react-native';
+import { Navigator } from 'react-native-deprecated-custom-components'
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
