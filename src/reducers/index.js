@@ -1,7 +1,5 @@
-import Topics from './Topics';
-import Images from './Images';
+import router from './router'
 
-export {
-	Topics,
-	Images
+export default {
+  router,
 }
