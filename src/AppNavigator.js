@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BackAndroid } from 'react-native'
+import { BackAndroid, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { addNavigationHelpers, StackNavigator, TabNavigator } from 'react-navigation'
 
@@ -10,15 +10,23 @@ import NotificationPage from './views/notificationPage'
 import UserPage from './views/UserPage'
 import TopicsPage from './views/TopicsPage'
 
+import Icons from 'react-native-vector-icons/FontAwesome'
+
 export const AppNavigator = TabNavigator({
   Home: { screen: Home },
   ChatPage: { screen: ChatPage },
   UploadPage: { screen: UploadPage },
   NotificationPage: { screen: NotificationPage },
   UserPage: { screen: UserPage },
-  TopicsPage: { screen: TopicsPage },
 }, {
     tabBarPosition: 'bottom',
+    tabBarOptions: {
+      showIcon: true,
+      showLabel: false,
+      style: {
+        backgroundColor: '#33353d'
+      }
+    }
   }
 )
 

@@ -5,10 +5,11 @@ import {
   Text,
   View,
 } from 'react-native'
+import tabBarBottomIcon from '../utils/Icons' 
 
 export default class Home extends Component {
   static navigationOptions = {
-    headerLeft: <Button onPress={() => console.log('click event')} title='Home' /> 
+    tabBarIcon: ({ tintColor }) => tabBarBottomIcon('home') 
   }
 
   render() {
