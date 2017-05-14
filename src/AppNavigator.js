@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { BackAndroid, StyleSheet } from 'react-native'
+import { BackAndroid } from 'react-native'
 import { connect } from 'react-redux'
-import { addNavigationHelpers, StackNavigator, TabNavigator } from 'react-navigation'
+import { addNavigationHelpers, TabNavigator } from 'react-navigation'
 
 import Home from './views/Home'
 import ChatPage from './views/ChatPage'
@@ -10,8 +10,6 @@ import NotificationPage from './views/notificationPage'
 import UserPage from './views/UserPage'
 import TopicsPage from './views/TopicsPage'
 
-import Icons from 'react-native-vector-icons/FontAwesome'
-
 export const AppNavigator = TabNavigator({
   Home: { screen: Home },
   ChatPage: { screen: ChatPage },
@@ -19,17 +17,15 @@ export const AppNavigator = TabNavigator({
   NotificationPage: { screen: NotificationPage },
   UserPage: { screen: UserPage },
 }, {
-    tabBarPosition: 'bottom',
-    tabBarOptions: {
-      showIcon: true,
-      showLabel: false,
-      style: {
-        backgroundColor: '#33353d'
-      }
+  tabBarPosition: 'bottom',
+  tabBarOptions: {
+    showIcon: true,
+    showLabel: false,
+    style: {
+      backgroundColor: '#33353d'
     }
   }
-)
-
+})
 
 class AppWithNavigationState extends Component {
   constructor(props) {

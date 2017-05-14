@@ -3,13 +3,10 @@ import { NavigationActions } from 'react-navigation'
 
 import { AppNavigator } from '../AppNavigator'
 
-const HomeAction = AppNavigator.router.getActionForPathAndParams('Home')
-const tempNavState = AppNavigator.router.getStateForAction(HomeAction)
-const TopicsPageAction = AppNavigator.router.getActionForPathAndParams('TopicsPage')
-// const initialNavState = AppNavigator.router.getStateForAction(HomeAction, tempNavState)
+const HomeAction = AppNavigator.router.getActionForPathAndParams('ChatPage')
 const initialNavState = AppNavigator.router.getStateForAction(HomeAction)
 
-function nav(state = initialNavState, action) {
+function nav(state, action) {
   switch(action.type) {
     case 'Home':
     case 'TopicsPage':
