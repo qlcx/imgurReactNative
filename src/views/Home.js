@@ -14,7 +14,7 @@ class HomeScreen extends React.Component {
     title: 'Welcome',
   };
   render() {
-    return <Text>Hello, Navigation!</Text>;
+    return <Text>Hello, Navigation!</Text>
   }
 }
 
@@ -24,6 +24,7 @@ const SimpleApp = StackNavigator({
 
 export default class Home extends Component {
   static navigationOptions = {
+    tabBarLabel: 'Home',
     tabBarIcon: ({ tintColor }) => tabBarBottomIcon('home') 
   }
 
