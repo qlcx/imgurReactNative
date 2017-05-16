@@ -7,10 +7,7 @@ const HomeAction = AppNavigator.router.getActionForPathAndParams('ChatPage')
 const initialNavState = AppNavigator.router.getStateForAction(HomeAction)
 
 function nav(state, action) {
-  switch(action.type) {
-    case 'Home':
-    case 'TopicsPage':
-      return AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'TopicsPage' }), state)    
+  switch(action.type) {  
     default:
       // 返回
       return AppNavigator.router.getStateForAction(action, state)

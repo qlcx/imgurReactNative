@@ -3,7 +3,9 @@ import { BackAndroid } from 'react-native'
 import { connect } from 'react-redux'
 import { addNavigationHelpers, TabNavigator } from 'react-navigation'
 
-import Home from './views/Home'
+import tabBarBottomIcon from './utils/Icons' 
+
+import HomeStack from './views/HomeStack/HomeStack'
 import ChatPage from './views/ChatPage'
 import UploadPage from './views/UploadPage'
 import NotificationPage from './views/notificationPage'
@@ -11,11 +13,26 @@ import UserPage from './views/UserPage'
 import TopicsPage from './views/TopicsPage'
 
 export const AppNavigator = TabNavigator({
-  Home: { screen: Home },
-  ChatPage: { screen: ChatPage },
-  UploadPage: { screen: UploadPage },
-  NotificationPage: { screen: NotificationPage },
-  UserPage: { screen: UserPage },
+  Home: { 
+    screen: HomeStack,
+    navigationOptions: { tabBarIcon: ({ tintColor }) => tabBarBottomIcon('home') }
+  },
+  ChatPage: { 
+    screen: ChatPage,
+    navigationOptions: { tabBarIcon: ({ tintColor }) => tabBarBottomIcon('commenting') }
+  },
+  UploadPage: { 
+    screen: UploadPage,
+    navigationOptions: { tabBarIcon: ({ tintColor }) => tabBarBottomIcon('camera') }
+  },
+  NotificationPage: { 
+    screen: NotificationPage,
+    navigationOptions: { tabBarIcon: ({ tintColor }) => tabBarBottomIcon('bell') }
+  },
+  UserPage: { 
+    screen: UserPage,
+    navigationOptions: { tabBarIcon: ({ tintColor }) => tabBarBottomIcon('user') }
+  },
 }, {
   tabBarPosition: 'bottom',
   tabBarOptions: {
