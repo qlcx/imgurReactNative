@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
-import {
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
+import { 
+  View, 
+  StyleSheet, 
+  TouchableOpacity, 
   Animated,
+  Text,
 } from 'react-native'
 import Icons from 'react-native-vector-icons/FontAwesome'
 
 const HEADER_HEIGHT = 60
 
-export default class Home extends Component {
+export default class TopicsPage extends Component {
   constructor(props) {
     super(props) 
 
@@ -52,7 +51,7 @@ export default class Home extends Component {
   }
 
   renderHeaderLeft() {
-    return <TouchableOpacity onPress={() => this.props.navigation.navigate('TopicsPage')}>
+    return <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
       <View style={[{width: 100}, styles.elemCenter]}>
         <Text style={styles.headerBTNName}>home</Text>
         <Icons

@@ -10,7 +10,6 @@ import ChatPage from './views/ChatPage'
 import UploadPage from './views/UploadPage'
 import NotificationPage from './views/notificationPage'
 import UserPage from './views/UserPage'
-import TopicsPage from './views/TopicsPage'
 
 export const AppNavigator = TabNavigator({
   Home: { 
@@ -60,27 +59,28 @@ class AppWithNavigationState extends Component {
   }
 
   handleHardBackPress() {
-    const { dispatch, nav } = this.props
-    let navigation = addNavigationHelpers({ dispatch, state: nav })    
+    // const { dispatch, nav } = this.props
+    // let navigation = addNavigationHelpers({ dispatch, state: nav })    
 
-    if (navigation.state.index) {
-      navigation.goBack()
-      return true
-    }
+    // if (navigation.state.index) {
+    //   navigation.goBack()
+    //   return true
+    // }
 
     // 退出软件
     return false
   }
 
   render() {
-    const { dispatch, nav } = this.props
+    // const { dispatch, nav } = this.props
 
-    return  <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
+    return  <AppNavigator />
   }
 }
 
-const mapStateToProps = state => ({
-  nav: state.router.nav,
-})
+// const mapStateToProps = state => ({
+//   nav: state.router.nav,
+// })
 
-export default connect(mapStateToProps)(AppWithNavigationState)
+// export default connect(mapStateToProps)(AppWithNavigationState)
+export default AppWithNavigationState

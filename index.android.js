@@ -1,22 +1,22 @@
-import React, { Component } from 'react'
-import { AppRegistry } from 'react-native'
+// import React, { Component } from 'react'
+// import { AppRegistry } from 'react-native'
 
-import App from './src/App'
+// import App from './src/App'
 
-class imgurReactNative extends Component {
-  render() {
-    return (
-      <App />
-    );
-  }
-}
+// class imgurReactNative extends Component {
+//   render() {
+//     return (
+//       <App />
+//     );
+//   }
+// }
 
-AppRegistry.registerComponent('imgurReactNative', () => imgurReactNative)
+// AppRegistry.registerComponent('imgurReactNative', () => imgurReactNative)
 
-// import { AppRegistry } from 'react-native';
+import { AppRegistry } from 'react-native';
 
-// import App from './js/App';
+import App from './js/App';
 
-// AppRegistry.registerComponent('imgurReactNative', () => App);
+AppRegistry.registerComponent('imgurReactNative', () => App);
 
-// export default App;
+export default App;
